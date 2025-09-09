@@ -3,8 +3,8 @@
 Bem vindo ao meu repositório! Aqui você encontrará minha jornada de aprendizado e alguns projetos de curso / faculdade.
 
 <div>
-  <img src="https://github-readme-stats.vercel.app/api?username=DeivRicardoSS&show_icons=true&theme=dracula"/>
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=DeivRicardoSS&layout=compact&theme=dracula"/>
+  <img src="https://github-readme-stats.vercel.app/api?username=Deivyson05&show_icons=true&theme=dracula"/>
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Deivyson05&layout=compact&theme=dracula"/>
 </div>
 
 
