@@ -1,23 +1,13 @@
-# Olá, eu sou Deivyson
-
-Bem vindo ao meu repositório! Aqui você encontrará minha jornada de aprendizado e alguns projetos de curso / faculdade.
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&size=30&duration=4000&pause=1000&color=E4F727&width=600&lines=Hello+there!;I'm+Deivyson;Welcome+to+my+repository+%F0%9F%98%81)](https://git.io/typing-svg)
+---
+Welcome to my repository! Here you can explore my learning journey and some of the projects I've been working on.
 
 <div>
   <img src="https://github-readme-stats.vercel.app/api?username=Deivyson05&show_icons=true&theme=dracula"/>
   <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Deivyson05&layout=compact&theme=dracula"/>
 </div>
 
-
-
-## Redes Sociais
-
-
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-16141f?style=for-the-badge&logo=linkedin&logoColor=0E76A8)](https://www.linkedin.com/in/deivyson-ricardo-33354425b/)
-[![github](https://img.shields.io/badge/github-16141f?style=for-the-badge&logo=github&logoColor=0E76A8)](https://github.com/DeivRicardoSS)
-[![github](https://img.shields.io/badge/instagram-16141f?style=for-the-badge&logo=instagram&logoColor=0E76A8)](https://www.instagram.com/deivs_05/)
-
-
-## Habilidades
+## 🚀 Technologies in Use
 
 <div>
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg" height="40" />
@@ -32,7 +22,12 @@ Bem vindo ao meu repositório! Aqui você encontrará minha jornada de aprendiza
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/csharp/csharp-original.svg" height="40"/>
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" height="40"/>
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/figma/figma-original.svg" height="40"/>
-
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/express/express-original.svg" height="40"/>
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongoose/mongoose-original.svg" height="40"/>
 </div>
+
+## 📫 Let's Talk
+
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Profile-blue?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/deivyson-ricardo-33354425b/)
+[![github](https://img.shields.io/badge/Github-Profile-green?logo=linkedin&logoColor=white)](https://github.com/DeivRicardoSS)
+[![instagram](https://img.shields.io/badge/Instagran-Profile-purple?logo=linkedin&logoColor=white)](https://www.instagram.com/deivs_05/)
