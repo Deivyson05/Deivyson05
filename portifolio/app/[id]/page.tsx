@@ -77,7 +77,12 @@ export default function ProjetoDetalha({ params }: Props) {
             try {
                 setLoading(true);
                 const url = `https://api.github.com/repos/Deivyson05/${params.id}/readme`;
-                const response = await fetch(url);
+                const response = await fetch(url, {
+                    headers: {
+                        "Accept": "application/vnd.github.v3+json",
+                        "User-Agent": "request"
+                    }
+                });
 
                 if (!response.ok) {
                     throw new Error(`Erro ao buscar o README. Status: ${response.status}`);
