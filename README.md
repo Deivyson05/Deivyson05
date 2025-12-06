@@ -2,10 +2,10 @@
 ---
 Welcome to my repository! Here you can explore my learning journey and some of the projects I've been working on.
 
-<div>
+<!-- <div>
   <img src="https://github-readme-stats.vercel.app/api?username=Deivyson05&show_icons=true&theme=dracula"/>
   <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Deivyson05&layout=compact&theme=dracula"/>
-</div>
+</div> -->
 
 ## 🚀 Technologies in Use
 
