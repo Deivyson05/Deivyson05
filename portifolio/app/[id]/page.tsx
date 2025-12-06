@@ -1,5 +1,6 @@
 'use client'
 
+import { useParams } from "next/navigation";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import ReactMarkdown from 'react-markdown';
@@ -21,14 +22,9 @@ import {
 
 import { Badge } from "@/components/ui/badge"
 
-interface Props {
-    params: {
-        id: string;
-    }
-}
-
-export default function ProjetoDetalha({ params }: Props) {
+export default function ProjetoDetalha() {
     const router = useRouter();
+    const params = useParams();
 
     const [width, setWidth] = useState(0);
     useEffect(() => {
