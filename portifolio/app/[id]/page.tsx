@@ -128,7 +128,7 @@ export default function ProjetoDetalha() {
                         }}
                     />
                 ) : (
-                    <section className="flex flex-col gap-5">
+                    <section className="flex flex-col gap-5 w-[30%]">
                         <Card className="flex flex-col px-5 bg-gray-900">
                             <CardTitle className="text-2xl">Tecnologias</CardTitle>
                             <div className="flex gap-2 flex-wrap">
