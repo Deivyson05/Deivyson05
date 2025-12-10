@@ -91,18 +91,18 @@ export const projetos = [
         site: "https://yomu-azure.vercel.app/onboarding",
         img: "https://drive.google.com/thumbnail?id=1S7L3UVsngb1D10fCAmVH1nItdwNB44x6",
         tec: [
-            //"Node Js", "React Native", "JavaScript", "Figma", "TypeScript", "MongoDB"
+            //"Node Js", "React", "Next Js", "Figma", "TypeScript", "PostgreSQL", "Render", "Spring Boot", "Java", "Vercel"
             {
                 name: "Node Js",
                 style: "border-l-green-200 bg-green-600"
             },
             {
-                name: "React Native",
+                name: "React",
                 style: "border-l-gray-200 bg-gray-600"
             },
             {
-                name: "JavaScript",
-                style: "border-l-yellow-200 bg-yellow-600"
+                name: "Next Js",
+                style: "border-l-gray-200 bg-gray-600"
             },
             {
                 name: "Figma",
@@ -113,7 +113,23 @@ export const projetos = [
                 style: "border-l-blue-200 bg-blue-600"
             },
             {
-                name: "MongoDB",
+                name: "PostgreSQL",
+                style: "border-l-pink-200 bg-pink-600"
+            },
+            {
+                name: "Render",
+                style: "border-l-pink-200 bg-pink-600"
+            },
+            {
+                name: "Spring Boot",
+                style: "border-l-pink-200 bg-pink-600"
+            },
+            {
+                name: "Java",
+                style: "border-l-pink-200 bg-pink-600"
+            },
+            {
+                name: "Vercel",
                 style: "border-l-pink-200 bg-pink-600"
             }
         ]
