@@ -13,18 +13,21 @@ import { SkillBar } from "./SkillBar";
 
 export default function Sobre() {
         const skills = [
-        { name: "JavaScript", value: 95 },
-        { name: "TypeScript", value: 90 },
-        { name: "React", value: 90 },
-        { name: "Next.js", value: 85 },
+        { name: "JavaScript", value: 90 },
+        { name: "TypeScript", value: 75 },
+        { name: "React", value: 80 },
+        { name: "Next.js", value: 70 },
         { name: "Node.js", value: 80 },
         { name: "Tailwind CSS", value: 95 },
-        { name: "Framer Motion", value: 80 },
+        { name: "MongoDB", value: 80 },
         { name: "PostgreSQL", value: 75 },
         { name: "Docker", value: 70 },
         { name: "Git", value: 90 },
-        { name: "Three.js", value: 65 },
+        { name: "Java", value: 65 },
+        { name: "SpringBoot", value: 60 },
         { name: "Figma", value: 85 },
+        { name: "C#", value: 65 },
+        { name: "Python", value: 65 },
     ];
 
     return (
