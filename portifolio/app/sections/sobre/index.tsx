@@ -1,5 +1,9 @@
 'use-client'
 
+import { motion } from "framer-motion";
+import { profile } from "@/data/profile";
+import { GlassCard } from "@/components/ui-extra/GlassCard";
+import { Sparkles, Heart } from "lucide-react";
 import {
     Card,
     CardTitle,
@@ -20,51 +24,83 @@ import { sobre } from "./sobre"
 
 export function SobreSection() {
 
-    const [width, setWidth] = useState(0);
-    useEffect(() => {
-        const handleResize = () => setWidth(window.innerWidth);
 
-        handleResize();
 
-        window.addEventListener('resize', handleResize);
+    const softSkills = [
+        "Comunicação Clara",
+        "Resolução de Problemas",
+        "Trabalho em Equipe",
+        "Adaptabilidade",
+        "Pensamento Crítico",
+        "Autodidatismo",
+    ];
 
-        return () => window.removeEventListener('resize', handleResize);
-    }, []);
+    const hobbies = [
+        "Fotografia Noturna",
+        "Jogos Indie",
+        "Eletrônica e IoT",
+        "Música Synthwave",
+    ];
 
 
     return (
-        <section className="flex flex-col p-10 gap-8 items-center">
+        <section className="py-12 mx-auto px-6 max-w-5xl">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    className="space-y-6"
+                >
+                    <div className="space-y-2">
+                        <h2 className="text-3xl font-display font-bold text-white">Quem sou eu</h2>
+                        <div className="h-1 w-20 bg-primary rounded-full" />
+                    </div>
+                    <p className="text-lg text-muted-foreground leading-relaxed">
+                        {profile.bio}
+                    </p>
+                </motion.div>
 
-
-            {
-                width > 1090 ? (
-                    sobre.map((s, index) => (
-                        <Card className="flex flex-row gap-4 p-4 bg-gray-900 w-full" key={index}>
-                            <img src={s.img} alt="img" width={64} height={64} />
-                            <div>
-                                <CardTitle>{s.title}</CardTitle>
-                                <CardDescription>{s.description}</CardDescription>
-                            </div>
-                        </Card>
-                    ))
-                ) : (
-                    <Carousel className="w-60">
-                        <CarouselContent>
-                            {sobre.map((s, index) => (
-                                <CarouselItem className="flex justify-center" key={index}>
-                                    <Card className="flex flex-col w-74 h-fill p-4 gap-4 items-center bg-gray-900 ">
-                                        <img src={s.img} alt="img" width={64} height={64} className="rounded-full"/>
-                                        <CardTitle>{s.title}</CardTitle>
-                                        <CardDescription className="text-center">{s.description}</CardDescription>
-                                    </Card>
-                                </CarouselItem>
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.2 }}
+                    className="space-y-6"
+                >
+                    <GlassCard className="p-6">
+                        <div className="flex items-center gap-3 mb-6">
+                            <Sparkles className="w-6 h-6 text-primary" />
+                            <h3 className="text-xl font-display font-bold text-white">Soft Skills</h3>
+                        </div>
+                        <ul className="grid grid-cols-2 gap-3">
+                            {softSkills.map((skill, i) => (
+                                <li key={i} className="text-muted-foreground flex items-center gap-2">
+                                    <span className="w-1.5 h-1.5 rounded-full bg-primary" />
+                                    {skill}
+                                </li>
                             ))}
-                        </CarouselContent>
-                        <CarouselPrevious />
-                        <CarouselNext />
-                    </Carousel>
-                )
-            }
+                        </ul>
+                    </GlassCard>
+
+                    <GlassCard className="p-6">
+                        <div className="flex items-center gap-3 mb-6">
+                            <Heart className="w-6 h-6 text-accent" />
+                            <h3 className="text-xl font-display font-bold text-white">Hobbies</h3>
+                        </div>
+                        <ul className="flex flex-wrap gap-2">
+                            {hobbies.map((hobby, i) => (
+                                <li
+                                    key={i}
+                                    className="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-sm text-muted-foreground"
+                                >
+                                    {hobby}
+                                </li>
+                            ))}
+                        </ul>
+                    </GlassCard>
+                </motion.div>
+            </div>
         </section>
     );
 }

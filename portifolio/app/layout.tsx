@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
+import { StarsBackground } from "@/components/ui-extra/StarsBackground";
 
 export const metadata: Metadata = {
   title: "Deivyson Ricardo Silva dos Santos",
@@ -47,6 +48,7 @@ export default function RootLayout({
         className={` antialiased`}
       >
         <Header />
+        <StarsBackground />
         {children}
         <Footer />
       </body>

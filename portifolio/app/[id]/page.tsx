@@ -1,187 +1,113 @@
 'use client'
+import { Projeto, projetos } from "@/app/sections/projetos/projetos";
+import { GlassCard } from "@/components/ui-extra/GlassCard";
+import { Button } from "@/components/ui/button";
+import { ArrowLeft, ExternalLink, Github } from "lucide-react";
+import Link from "next/link";
+import { motion } from "framer-motion";
+import { usePathname } from "next/navigation";
 
-import { useParams } from "next/navigation";
-import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
-import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
-
-import { projetos } from "@/app/sections/projetos/projetos";
-
-import styles from "./styles.module.css";
-
-import { Button } from "@/components/ui/button"
-
-import { AboutControls } from "@/components/aboutControls";
-
-import {
-    Card,
-    CardTitle,
-    CardDescription
-} from "@/components/ui/card"
-
-import { Badge } from "@/components/ui/badge"
-
-export default function ProjetoDetalha() {
-    const router = useRouter();
-    const params = useParams();
-
-    const [width, setWidth] = useState(0);
-    useEffect(() => {
-        const handleResize = () => setWidth(window.innerWidth);
-
-        handleResize();
-
-        window.addEventListener('resize', handleResize);
-
-        return () => window.removeEventListener('resize', handleResize);
-    }, []);
-
-
-    const [content, setContent] = useState("");
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState("");
-
-    const projeto = projetos.find(projeto => projeto.id === params.id);
-
-    function decodeBase64(base64String: string) {
-        const binaryString = atob(base64String);
-        const len = binaryString.length;
-        const bytes = new Uint8Array(len);
-        for (let i = 0; i < len; i++) {
-            bytes[i] = binaryString.charCodeAt(i);
-        }
-
-        const decoder = new TextDecoder('utf-8');
-        return decoder.decode(bytes);
-    }
-
-    function filterColors(tec: string) {
-        if (tec == "React Js" || tec == "JavaScript") {
-            return "orange";
-        } else if (tec == "CSS3" || tec == "TaiwlindCSS" || tec == "Figma") {
-            return "purple";
-        } else if (tec == "HTML5" || tec == "Node Js") {
-            return "green"
-        }
-
-        return "blue"
-    }
-
-    useEffect(() => {
-        const fetchReadme = async () => {
-            try {
-                setLoading(true);
-                const url = `https://api.github.com/repos/Deivyson05/${params.id}/readme`;
-                const response = await fetch(url, {
-                    headers: {
-                        "Accept": "application/vnd.github.v3+json",
-                        "User-Agent": "request"
-                    }
-                });
-
-                if (!response.ok) {
-                    throw new Error(`Erro ao buscar o README. Status: ${response.status}`);
-                }
-
-                const data = await response.json();
-
-                const decodedContent = decodeBase64(data.content);
-                setContent(decodedContent);
-            } catch (err) {
-                let errorMessage = "Ocorreu um erro desconhecido";
-                if (err instanceof Error) {
-                    errorMessage = err.message;
-                } else if (typeof err === "string") {
-                    errorMessage = err;
-                }
-                setError(errorMessage);
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchReadme();
-    }, [params.id])
-
-    if (loading) {
-        return <div className="min-h-screen flex items-center justify-center">Carregando README...</div>;
-    }
-
-    if (error) {
-        return <div className="min-h-screen flex items-center justify-center">Erro ao carregar o README: {error}</div>;
-    }
-
+export default function ProjectDetail() {
+    const project = projetos.find((projeto) => projeto.slug === usePathname().replace("/", ""));
     return (
-        <main className="min-h-screen mt-20 flex flex-col p-10 gap-10 md:flex-row md:justify-between">
-            <section className={`flex flex-col gap-4 ${styles.content} md:w-[70%]`}>
-                <ReactMarkdown remarkPlugins={[remarkGfm]}>
-                    {content}
-                </ReactMarkdown>
-            </section>
+        <div className="mx-auto px-4 sm:px-6 max-w-5xl pt-8">
+            <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                className="mb-8"
+            >
+                <Button variant="ghost" asChild className="text-muted-foreground hover:text-white pl-0">
+                    <Link href="/">
+                        <ArrowLeft className="w-4 h-4 mr-2" />
+                        Voltar para Projetos
+                    </Link>
+                </Button>
+            </motion.div>
 
-            {
-                width <= 767 ? (
-                    <AboutControls projeto={projeto}
-                        onBack={() => {
-                            router.back();
-                        }}
-                    />
-                ) : (
-                    <section className="flex flex-col gap-5 w-[30%]">
-                        <Card className="flex flex-col px-5 bg-gray-900">
-                            <CardTitle className="text-2xl">Tecnologias</CardTitle>
-                            <div className="flex gap-2 flex-wrap">
-                                {
-                                    projeto?.tec.map((t, index) => (
-                                        <Badge variant="default" key={index}
-                                            className={`text-white rounded-none border-l-4 ${t.style}`}
-                                        >{t.name}</Badge>
-                                    ))
-                                }
-
+            <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.1 }}
+            >
+                <GlassCard className="p-0 overflow-hidden mb-12 border-primary/20 glow-border">
+                    <div className="relative h-[40vh] md:h-[50vh] w-full">
+                        <img
+                            src={project?.coverImage}
+                            alt={project?.titulo}
+                            className="w-full h-full object-cover"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent" />
+                        <div className="absolute bottom-0 left-0 right-0 p-8 md:p-12">
+                            <div className="flex flex-wrap items-center gap-4 mb-4">
+                                <span className="px-3 py-1 rounded-full bg-primary/20 border border-primary/30 text-primary text-sm font-medium backdrop-blur-md">
+                                    {project?.status === "concluido" ? "Concluído" : "Em Andamento"}
+                                </span>
                             </div>
-                        </Card>
-                        <Card className="flex flex-col px-5 bg-gray-900">
-                            <CardTitle className="text-2xl">Visualizar</CardTitle>
-                            <div className="flex gap-2">
-                                {
-                                    projeto?.site == "" ? (
-                                        <Button variant="default" disabled className="flex-1 text-white cursor-pointer py-6"
-                                            onClick={() => {
-                                                window.open(projeto?.site || "#");
-                                            }}
-                                        >Projeto</Button>
-                                    ) : (
-                                        <Button variant="default" className="flex-1 text-white cursor-pointer py-6"
-                                            onClick={() => {
-                                                window.open(projeto?.site || "#");
-                                            }}
-                                        >Projeto</Button>
-                                    )
-                                }
-                                {
-                                    projeto?.repo == "" ? (
-                                        <Button variant="secondary" disabled className="flex-1 text-white cursor-pointer py-6"
-                                            onClick={() => {
-                                                window.open(projeto?.repo || "#");
-                                            }}
-                                        >Código</Button>
-                                    ) : (
-                                        <Button variant="secondary" className="flex-1 text-white cursor-pointer py-6"
-                                            onClick={() => {
-                                                window.open(projeto?.repo || "#");
-                                            }}
-                                        >Código</Button>
-                                    )
-                                }
-                            </div>
-                        </Card>
-                    </section>
-                )
-            }
+                            <h1 className="text-4xl md:text-6xl font-display font-bold text-white glow-text mb-4">
+                                {project?.titulo}
+                            </h1>
+                        </div>
+                    </div>
+                </GlassCard>
+            </motion.div>
 
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.2 }}
+                    className="md:col-span-2 space-y-8"
+                >
+                    <div className="space-y-4">
+                        <h2 className="text-2xl font-display font-bold text-white">Sobre o Projeto</h2>
+                        <p className="text-lg text-muted-foreground leading-relaxed whitespace-pre-line" dangerouslySetInnerHTML={{__html: project?.descricaoLonga as string}}/>
 
-        </main>
-    )
+                    </div>
+                </motion.div>
+
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.3 }}
+                    className="space-y-8"
+                >
+                    <GlassCard className="p-6">
+                        <h3 className="text-xl font-display font-bold text-white mb-6">Tecnologias Utilizadas</h3>
+                        <div className="flex flex-wrap gap-2">
+                            {project?.tecnologias.map((tech) => (
+                                <span
+                                    key={tech.name}
+                                    className="px-3 py-1.5 bg-secondary/20 border border-white/10 rounded-md text-sm text-foreground backdrop-blur-sm"
+                                >
+                                    {tech.name}
+                                </span>
+                            ))}
+                        </div>
+                    </GlassCard>
+
+                    <GlassCard className="p-6">
+                        <h3 className="text-xl font-display font-bold text-white mb-6">Ações</h3>
+                        <div className="space-y-4">
+                            {project?.linkProjeto && (
+                                <Button asChild className="w-full bg-primary hover:bg-primary/90 text-white shadow-[0_0_15px_hsl(var(--primary)/0.3)]">
+                                    <a href={project?.linkProjeto} target="_blank" rel="noopener noreferrer">
+                                        <ExternalLink className="w-4 h-4 mr-2" />
+                                        Acessar Projeto
+                                    </a>
+                                </Button>
+                            )}
+                            {project?.linkCodigo && (
+                                <Button asChild variant="outline" className="w-full border-white/20 bg-white/5 hover:bg-white/10 text-white">
+                                    <a href={project?.linkCodigo} target="_blank" rel="noopener noreferrer">
+                                        <Github className="w-4 h-4 mr-2" />
+                                        Ver Código Fonte
+                                    </a>
+                                </Button>
+                            )}
+                        </div>
+                    </GlassCard>
+                </motion.div>
+            </div>
+        </div>
+    );
 }
