@@ -35,14 +35,14 @@ export function AboutControls({ projeto, onBack }: Props) {
             <div className="flex bg-background/50 backdrop-blur-sm rounded-full shadow-[inset_1px_1px_0px_rgba(255,255,255,0.3),inset_-1px_-1px_0px_rgba(255,255,255,0.3)]">
                 <button className={buttonStyle}
                     onClick={() => {
-                        window.open(projeto?.site || "#");
+                        window.open(projeto?.linkProjeto || "#");
                     }}
                 >
                     <LayoutPanelTop />
                 </button>
                 <button className={buttonStyle}
                     onClick={() => {
-                        window.open(projeto?.repo || "#");
+                        window.open(projeto?.linkCodigo || "#");
                     }}
                 >
                     <FolderClosed />
@@ -57,7 +57,7 @@ export function AboutControls({ projeto, onBack }: Props) {
                             <DialogTitle>Tecnologias usadas:</DialogTitle>
                             <DialogDescription className="flex flex-wrap gap-2">
                                 {
-                                    projeto?.tec.map((t, index) => (
+                                    projeto?.tecnologias.map((t, index) => (
                                         <Badge variant="default" key={index}
                                             className={`text-white border-l-4 rounded-none ${t.style}`}
                                         >{t.name}</Badge>
