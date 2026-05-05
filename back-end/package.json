@@ -29,9 +29,9 @@
         "tsx": "^4.17.0"
     },
     "scripts": {
-        "start": "tsx api/index.ts",
+        "start": "node dist/api/index.js",
         "dev": "tsx watch api/index.ts",
-        "build": "tsc",
+        "build": "prisma generate && tsc",
         "entidade:new": "tsx cli/novaEntidade.ts",
         "entidade:del": "tsx cli/excluirEntidade.ts",
         "prisma:build:migrate": "tsx cli/compactarModelos.ts && prisma migrate dev && prisma generate",
