@@ -1,5 +1,5 @@
-import { Controller } from "../decorators/controller";
-import { Get, Post, Put, Patch, Delete } from "../decorators/routes";
+import { Controller } from "../decorators/controller.js";
+import { Get, Post, Put, Patch, Delete } from "../decorators/routes.js";
 import { TecnologiaService } from "../services/tecnologia.service.js";
 import { HttpError } from "../core/httpError.js";
 import { Request, Response } from "express";

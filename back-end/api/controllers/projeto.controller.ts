@@ -1,5 +1,5 @@
-import { Controller } from "../decorators/controller";
-import { Get, Post, Put, Patch, Delete } from "../decorators/routes";
+import { Controller } from "../decorators/controller.js";
+import { Get, Post, Put, Patch, Delete } from "../decorators/routes.js";
 import { ProjetoService } from "../services/projeto.service.js";
 import { HttpError } from "../core/httpError.js";
 import { Request, Response } from "express";

@@ -1,5 +1,5 @@
 import { Application } from "express";
-import { ControllerBase } from "./types";
+import { ControllerBase } from "./types.js";
 
 export function registerRoutes(app: Application, controller: ControllerBase) {
   const basePath = (controller as any).basePath ?? "";
