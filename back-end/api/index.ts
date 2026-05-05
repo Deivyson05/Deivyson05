@@ -1,13 +1,11 @@
 import express from "express";
 import cors from "cors";
 import "dotenv/config";
-import { prisma } from "../lib/prisma";
-import { ProjetoController } from "./controllers/projeto.controller";
-import { registerRoutes } from "./core/router";
-import { Control } from "node:child_process";
-import { ControllerBase } from "./core/types";
-import { UserController } from "./controllers/user.controller";
-import { TecnologiaController } from "./controllers/tecnologia.controller";
+import { ProjetoController } from "./controllers/projeto.controller.js";
+import { registerRoutes } from "./core/router.js";
+import { ControllerBase } from "./core/types.js";
+import { UserController } from "./controllers/user.controller.js";
+import { TecnologiaController } from "./controllers/tecnologia.controller.js";
 
 const app: express.Application = express();
 app.use(cors());
