@@ -1,0 +1,13 @@
+
+model Projeto {
+    id          String   @id @default(uuid())
+    title       String
+    desc        String
+    about       String
+    concluido   Boolean
+    tec         String[]
+    createdAt   DateTime @default(now())
+    updatedAt   DateTime @updatedAt
+}
+
+    
