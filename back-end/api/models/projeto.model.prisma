@@ -8,6 +8,9 @@ model Projeto {
     createdAt   DateTime @default(now())
     updatedAt   DateTime @updatedAt
     tec ProjetoTecnologia[]
+    linkProjeto String
+    linkRepo    String
+    imgUrl      String
 }
 
     

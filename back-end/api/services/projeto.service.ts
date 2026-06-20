@@ -9,10 +9,13 @@ export class ProjetoService {
             desc,
             about,
             concluido,
-            tec
+            tec,
+            linkProjeto,
+            linkRepo,
+            imgUrl
         } = body;
 
-        if (!title || !desc || !about || !tec) {
+        if (!title || !desc || !about || !tec, !linkProjeto || !linkRepo || !imgUrl) {
             throw new HttpError("Title and description are required", 400);
         }
 
@@ -22,6 +25,9 @@ export class ProjetoService {
                 desc,
                 about,
                 concluido,
+                linkProjeto,
+                linkRepo,
+                imgUrl,
                 tec: {
                     create: tec.map((tecId: string) => ({
                         tecnologia: {
