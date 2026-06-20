@@ -1,0 +1,8 @@
+
+model ProjetoTecnologia {
+  id          Int       @id @default(autoincrement())
+  projetoId   String
+  tecnologiaId String
+  projeto     Projeto    @relation(fields: [projetoId], references: [id])
+  tecnologia   Tecnologia @relation(fields: [tecnologiaId], references: [id])
+}

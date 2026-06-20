@@ -1,6 +1,5 @@
 generator client {
   provider = "prisma-client-js"
-  url      = env("DATABASE_URL")
 }
 
 datasource db {
@@ -14,18 +13,27 @@ model Projeto {
     desc        String
     about       String
     concluido   Boolean
-    tec         String[]
     createdAt   DateTime @default(now())
     updatedAt   DateTime @updatedAt
+    tec ProjetoTecnologia[]
 }
 
     
+model ProjetoTecnologia {
+  id          Int       @id @default(autoincrement())
+  projetoId   String
+  tecnologiaId String
+  projeto     Projeto    @relation(fields: [projetoId], references: [id])
+  tecnologia   Tecnologia @relation(fields: [tecnologiaId], references: [id])
+}
+
 model Tecnologia {
     id        String   @id @default(uuid())
     name      String   @unique
     level     Int
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
+    projetos ProjetoTecnologia[]
 }
 
     

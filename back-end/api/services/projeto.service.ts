@@ -2,16 +2,17 @@ import { prisma } from "../../lib/prisma.js";
 import { HttpError } from "../core/httpError.js";
 
 export class ProjetoService {
-    
+
     async create(body: any) {
-        const { 
-            title, 
+        const {
+            title,
             desc,
             about,
-            concluido
+            concluido,
+            tec
         } = body;
 
-        if (!title || !desc || !about ) {
+        if (!title || !desc || !about || !tec) {
             throw new HttpError("Title and description are required", 400);
         }
 
@@ -20,7 +21,23 @@ export class ProjetoService {
                 title,
                 desc,
                 about,
-                concluido
+                concluido,
+                tec: {
+                    create: tec.map((tecId: string) => ({
+                        tecnologia: {
+                            connect: {
+                                id: tecId
+                            }
+                        }
+                    }))
+                }
+            },
+            include: {
+                tec: {
+                    include: {
+                        tecnologia: true
+                    }
+                }
             }
         })
     }
@@ -43,9 +60,9 @@ export class ProjetoService {
     }
 
     async update(body: any) {
-        const { 
-            id, 
-            title, 
+        const {
+            id,
+            title,
             desc,
             about,
             concluido
@@ -64,4 +81,3 @@ export class ProjetoService {
         })
     }
 }
-    

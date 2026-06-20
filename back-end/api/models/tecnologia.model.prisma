@@ -5,6 +5,7 @@ model Tecnologia {
     level     Int
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
+    projetos ProjetoTecnologia[]
 }
 
     
