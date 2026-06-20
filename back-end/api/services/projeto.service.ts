@@ -43,7 +43,15 @@ export class ProjetoService {
     }
 
     async listAll() {
-        const projetos = await prisma.projeto.findMany();
+        const projetos = await prisma.projeto.findMany({
+            include: {
+                tec: {
+                    include: {
+                        tecnologia: true
+                    }
+                }
+            }
+        });
         return projetos;
     }
 
