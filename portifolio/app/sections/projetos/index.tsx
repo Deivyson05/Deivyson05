@@ -1,11 +1,43 @@
 'use client'
-import { projetos } from "./projetos";
 import { ProjectCarousel } from "./ProjectCarousel";
 import { motion } from "framer-motion";
+import useSWR from 'swr';
+import { getProjetos } from "@/data/projetos";
+
+export interface Projeto {
+  id: string;
+  title: string;
+  desc: string;
+  about: string;
+  concluido: boolean;
+  createdAt: Date;
+  updatedAt: Date;
+  linkProjeto: string;
+  linkRepo: string;
+  imgUrl: string;
+  tec: TecnologiaProjeto[];
+}
+
+interface Tecnologia {
+  id: string;
+  name: string;
+  level: number;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+interface TecnologiaProjeto {
+  projetoId: string;
+  tecnologiaId: string;
+  tecnologia: Tecnologia;
+}
 
 export function Projetos() {
-  const concluidos = projetos.filter((p) => p.status === "concluido");
-  const emAndamento = projetos.filter((p) => p.status === "em-andamento");
+
+
+  const { data: projetos, isLoading, error } = useSWR<Projeto[]>('/projeto', () => getProjetos());
+  const concluidos: Projeto[] = (projetos??[]).filter((p: Projeto) => p.concluido === true);
+  const emAndamento: Projeto[] = (projetos??[]).filter((p: Projeto) => p.concluido === false);
 
   return (
     <section id="projetos" className="py-24 mx-auto px-6 max-w-7xl">

@@ -6,29 +6,23 @@ import { Typewriter } from "react-simple-typewriter";
 import { Card, CardTitle, CardDescription } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { SobreSection } from "../sections/sobre";
-import { profile } from "@/data/profile";
+import { getProfile, profile } from "@/data/profile";
 import { GlassCard } from "@/components/ui-extra/GlassCard";
 import { Quote, Code2 } from "lucide-react";
 import { SkillBar } from "./SkillBar";
 
+import useSWR from 'swr';
+import { getTecnologias } from "@/data/tecnologias";
+
+interface Skill {
+    id: string;
+    name: string;
+    level: number;
+}
+
 export default function Sobre() {
-        const skills = [
-        { name: "JavaScript", value: 90 },
-        { name: "TypeScript", value: 75 },
-        { name: "React", value: 80 },
-        { name: "Next.js", value: 70 },
-        { name: "Node.js", value: 80 },
-        { name: "Tailwind CSS", value: 95 },
-        { name: "MongoDB", value: 80 },
-        { name: "PostgreSQL", value: 75 },
-        { name: "Docker", value: 70 },
-        { name: "Git", value: 90 },
-        { name: "Java", value: 65 },
-        { name: "SpringBoot", value: 60 },
-        { name: "Figma", value: 85 },
-        { name: "C#", value: 65 },
-        { name: "Python", value: 65 },
-    ];
+    const { data: perfil, isLoading: isLoadingPerfil, error: errorPerfil } = useSWR('/profile', () => getProfile());
+    const { data: skills, isLoading: isLoadingSkills, error: errorSkills } = useSWR('/skills', () => getTecnologias());
 
     return (
         <main className="flex flex-col ">
@@ -43,7 +37,7 @@ export default function Sobre() {
                         <div className="w-48 h-48 md:w-64 md:h-64 rounded-full overflow-hidden border-4 border-primary/30 relative z-10 glow-border">
                             <img
                                 src={profile.avatar}
-                                alt={profile.name}
+                                alt={perfil?.name}
                                 className="w-full h-full object-cover"
                             />
                         </div>
@@ -57,14 +51,14 @@ export default function Sobre() {
                         className="flex-1 space-y-6 text-center md:text-left"
                     >
                         <div>
-                            <h1 className="text-4xl md:text-5xl font-display font-bold text-white mb-2">{profile.name}</h1>
+                            <h1 className="text-4xl md:text-5xl font-display font-bold text-white mb-2">{perfil?.name}</h1>
                             <p className="text-xl text-primary font-medium">{profile.role}</p>
                         </div>
 
                         <GlassCard className="inline-block p-6 border-l-4 border-l-primary relative">
                             <Quote className="absolute top-4 right-4 w-8 h-8 text-primary/20" />
                             <p className="text-lg md:text-xl text-muted-foreground italic relative z-10">
-                                "{profile.quote}"
+                                "{perfil?.quote}"
                             </p>
                         </GlassCard>
                     </motion.div>
@@ -88,8 +82,8 @@ export default function Sobre() {
 
                     <GlassCard className="p-8">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
-                            {skills.map((skill, i) => (
-                                <SkillBar key={skill.name} name={skill.name} value={skill.value} index={i} />
+                            {(skills??[]).map((skill: Skill) => (
+                                <SkillBar key={skill.name} name={skill.name} value={skill.level} index={skill.id} />
                             ))}
                         </div>
                     </GlassCard>

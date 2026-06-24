@@ -36,10 +36,13 @@ export function SobreSection() {
     ];
 
     const hobbies = [
-        "Fotografia Noturna",
+        "Fotografia",
         "Jogos Indie",
-        "Eletrônica e IoT",
-        "Música Synthwave",
+        "Música",
+        "Minecraft",
+        "Engenharia de Redstone",
+        "Musculação",
+        "Alguns Animes"
     ];
 
 
