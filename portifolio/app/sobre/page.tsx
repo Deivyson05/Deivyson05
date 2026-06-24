@@ -15,7 +15,7 @@ import useSWR from 'swr';
 import { getTecnologias } from "@/data/tecnologias";
 
 interface Skill {
-    id: string;
+    id: number;
     name: string;
     level: number;
 }
