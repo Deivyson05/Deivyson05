@@ -122,7 +122,7 @@ export class ProjetoService {
                 id
             },
             data: {
-                impressoes: {
+                impressoesProjeto: {
                     increment: 1
                 }
             }

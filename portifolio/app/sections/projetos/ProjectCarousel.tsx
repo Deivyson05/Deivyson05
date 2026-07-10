@@ -44,7 +44,7 @@ export function ProjectCarousel({ projects }: { projects: Projeto[] }) {
                   <p className="text-muted-foreground line-clamp-2">{project.desc}</p>
 
                   <div className="flex gap-3 mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">
-                    <Button asChild className="bg-primary hover:bg-primary/90 text-white rounded-full"
+                    <Button asChild className="bg-primary hover:bg-primary/90 text-white rounded-full cursor-pointer"
                       onClick={() => handleProjectClick(project.id)}
                     >
                       <span>
@@ -53,7 +53,7 @@ export function ProjectCarousel({ projects }: { projects: Projeto[] }) {
                       </span>
                     </Button>
                     {project.linkProjeto && (
-                      <Button asChild variant="outline" className="rounded-full border-white/20 bg-black/40 backdrop-blur-md text-white hover:bg-white/10">
+                      <Button asChild variant="outline" className="rounded-full border-white/20 bg-black/40 backdrop-blur-md text-white hover:bg-white/10 cursor-pointer">
                         <a href={project.linkProjeto} target="_blank" rel="noopener noreferrer">
                           Acessar
                           <ExternalLink className="w-4 h-4 ml-2" />
