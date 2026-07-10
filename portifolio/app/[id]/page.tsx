@@ -117,16 +117,20 @@ export default function ProjectDetail() {
                                 <Button asChild className="w-full bg-primary hover:bg-primary/90 text-white shadow-[0_0_15px_hsl(var(--primary)/0.3)]"
                                     onClick={() => handleProjectClick(project.id, project.linkProjeto)}
                                 >
-                                    <ExternalLink className="w-4 h-4 mr-2" />
-                                    Acessar Projeto
+                                    <span>
+                                        <ExternalLink className="w-4 h-4 mr-2" />
+                                        Acessar Projeto
+                                    </span>
                                 </Button>
                             )}
                             {project?.linkRepo && (
                                 <Button asChild variant="outline" className="w-full border-white/20 bg-white/5 hover:bg-white/10 text-white"
                                     onClick={() => handleRepoClick(project.id, project.linkRepo)}
                                 >
-                                    <Github className="w-4 h-4 mr-2" />
-                                    Ver Código Fonte
+                                    <span>
+                                        <Github className="w-4 h-4 mr-2" />
+                                        Ver Código Fonte
+                                    </span>
                                 </Button>
                             )}
                         </div>
