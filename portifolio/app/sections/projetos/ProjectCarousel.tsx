@@ -21,7 +21,7 @@ export function ProjectCarousel({ projects }: { projects: Projeto[] }) {
     } catch (error) {
       console.error("Error updating project impressions:", error);
     } finally {
-      router.push(`/projetos/${projectId}`);
+      router.push(`/${projectId}`);
     }
   }
 
