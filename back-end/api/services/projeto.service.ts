@@ -15,7 +15,7 @@ export class ProjetoService {
             imgUrl
         } = body;
 
-        if (!title || !desc || !about || !tec, !linkProjeto || !linkRepo || !imgUrl) {
+        if (!title || !desc || !about || !tec || !linkProjeto || !linkRepo || !imgUrl) {
             throw new HttpError("Title and description are required", 400);
         }
 
@@ -91,6 +91,57 @@ export class ProjetoService {
                 desc,
                 about,
                 concluido
+            }
+        })
+    }
+
+    async updateImpressoes(id: string) {
+        if (!id) {
+            throw new HttpError("Id is required", 400);
+        }
+
+        await prisma.projeto.update({
+            where: {
+                id
+            },
+            data: {
+                impressoes: {
+                    increment: 1
+                }
+            }
+        })
+    }
+
+    async updateImpressoesProjeto(id: string) {
+        if (!id) {
+            throw new HttpError("Id is required", 400);
+        }
+
+        await prisma.projeto.update({
+            where: {
+                id
+            },
+            data: {
+                impressoes: {
+                    increment: 1
+                }
+            }
+        })
+    }
+
+    async updateImpressoesCodigo(id: string) {
+        if (!id) {
+            throw new HttpError("Id is required", 400);
+        }
+
+        await prisma.projeto.update({
+            where: {
+                id
+            },
+            data: {
+                impressoesCodigo: {
+                    increment: 1
+                }
             }
         })
     }

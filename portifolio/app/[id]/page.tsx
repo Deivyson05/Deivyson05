@@ -1,7 +1,7 @@
 'use client'
 import { Projeto } from "@/app/sections/projetos/index";
 import useSWR from 'swr';
-import { getProjetos } from "@/data/projetos";
+import { getProjetos, updateImpressoesCodigo, updateImpressoesProjeto } from "@/data/projetos";
 import { GlassCard } from "@/components/ui-extra/GlassCard";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, ExternalLink, Github } from "lucide-react";
@@ -13,6 +13,25 @@ export default function ProjectDetail() {
     const { data: projetos, isLoading, error } = useSWR<Projeto[]>('/projeto', getProjetos);
     const pathname = usePathname(); // hook chamado no topo
     const projectId = pathname.replace("/", "");
+
+    async function handleProjectClick(projectId: string, link: string) {
+        try {
+            await updateImpressoesProjeto(projectId);
+        } catch (error) {
+            console.error("Error updating project impressions:", error);
+        } finally {
+            window.open(link, "_blank");
+        }
+    }
+    async function handleRepoClick(projectId: string, link: string) {
+        try {
+            await updateImpressoesCodigo(projectId);
+        } catch (error) {
+            console.error("Error updating project impressions:", error);
+        } finally {
+            window.open(link, "_blank");
+        }
+    }
 
     const project = (projetos ?? []).find((projeto) => projeto.id === projectId);
     return (
@@ -95,19 +114,19 @@ export default function ProjectDetail() {
                         <h3 className="text-xl font-display font-bold text-white mb-6">Ações</h3>
                         <div className="space-y-4">
                             {project?.linkProjeto && (
-                                <Button asChild className="w-full bg-primary hover:bg-primary/90 text-white shadow-[0_0_15px_hsl(var(--primary)/0.3)]">
-                                    <a href={project?.linkProjeto} target="_blank" rel="noopener noreferrer">
-                                        <ExternalLink className="w-4 h-4 mr-2" />
-                                        Acessar Projeto
-                                    </a>
+                                <Button asChild className="w-full bg-primary hover:bg-primary/90 text-white shadow-[0_0_15px_hsl(var(--primary)/0.3)]"
+                                    onClick={() => handleProjectClick(project.id, project.linkProjeto)}
+                                >
+                                    <ExternalLink className="w-4 h-4 mr-2" />
+                                    Acessar Projeto
                                 </Button>
                             )}
                             {project?.linkRepo && (
-                                <Button asChild variant="outline" className="w-full border-white/20 bg-white/5 hover:bg-white/10 text-white">
-                                    <a href={project?.linkRepo} target="_blank" rel="noopener noreferrer">
-                                        <Github className="w-4 h-4 mr-2" />
-                                        Ver Código Fonte
-                                    </a>
+                                <Button asChild variant="outline" className="w-full border-white/20 bg-white/5 hover:bg-white/10 text-white"
+                                    onClick={() => handleRepoClick(project.id, project.linkRepo)}
+                                >
+                                    <Github className="w-4 h-4 mr-2" />
+                                    Ver Código Fonte
                                 </Button>
                             )}
                         </div>

@@ -53,5 +53,38 @@ export class ProjetoController {
             return res.status(err.status || 500).json({ error: err.message });
         }
     }
+
+    @Patch("/impressoes/:id")
+    async updateImpressoes(req: Request, res: Response) {
+        try {
+            const Projeto = await this.service.updateImpressoes(req.params.id);
+            return res.json({ message: "Impressões atualizadas com sucesso" });
+        } catch (err: HttpError | any) {
+            console.error("Error:", err);
+            return res.status(err.status || 500).json({ error: err.message });
+        }
+    }
+
+    @Patch("/impressoesProjeto/:id")
+    async updateImpressoesProjeto(req: Request, res: Response) {
+        try {
+            const Projeto = await this.service.updateImpressoesProjeto(req.params.id);
+            return res.json({ message: "Impressões do projeto atualizadas com sucesso" });
+        } catch (err: HttpError | any) {
+            console.error("Error:", err);
+            return res.status(err.status || 500).json({ error: err.message });
+        }
+    }
+
+    @Patch("/impressoesCodigo/:id")
+    async updateImpressoesCodigo(req: Request, res: Response) {
+        try {
+            const Projeto = await this.service.updateImpressoesCodigo(req.params.id);
+            return res.json({ message: "Impressões do código atualizadas com sucesso" });
+        } catch (err: HttpError | any) {
+            console.error("Error:", err);
+            return res.status(err.status || 500).json({ error: err.message });
+        }
+    }
 }
     

@@ -4,13 +4,26 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { ExternalLink, ArrowRight } from "lucide-react";
 import useEmblaCarousel from "embla-carousel-react";
+import { updateImpressoes } from "@/data/projetos";
+import { useRouter } from "next/navigation";
 
 export function ProjectCarousel({ projects }: { projects: Projeto[] }) {
+  const router = useRouter();
   const [emblaRef] = useEmblaCarousel({
     align: "start",
     loop: false,
     dragFree: true,
   });
+
+  async function handleProjectClick(projectId: string) {
+    try {
+      await updateImpressoes(projectId);
+    } catch (error) {
+      console.error("Error updating project impressions:", error);
+    } finally {
+      router.push(`/projetos/${projectId}`);
+    }
+  }
 
   return (
     <div className="overflow-hidden py-4 -mx-4 px-4 sm:mx-0 sm:px-0" ref={emblaRef}>
@@ -31,11 +44,11 @@ export function ProjectCarousel({ projects }: { projects: Projeto[] }) {
                   <p className="text-muted-foreground line-clamp-2">{project.desc}</p>
                   
                   <div className="flex gap-3 mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">
-                    <Button asChild className="bg-primary hover:bg-primary/90 text-white rounded-full">
-                      <Link href={`/${project.id}`}>
-                        Ver detalhes
-                        <ArrowRight className="w-4 h-4 ml-2" />
-                      </Link>
+                    <Button asChild className="bg-primary hover:bg-primary/90 text-white rounded-full"
+                      onClick={() => handleProjectClick(project.id)}
+                    >
+                      Ver detalhes
+                      <ArrowRight className="w-4 h-4 ml-2" />
                     </Button>
                     {project.linkProjeto && (
                       <Button asChild variant="outline" className="rounded-full border-white/20 bg-black/40 backdrop-blur-md text-white hover:bg-white/10">
