@@ -10,7 +10,6 @@ export function Menu() {
         { path: "/", label: "Home" },
         { path: "/about", label: "Sobre" },
         { path: "/projects", label: "Projetos" },
-        { path: "/contact", label: "Contato" },
     ]
 
     const tl = useRef<gsap.core.Timeline | null>(null);
