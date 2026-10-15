@@ -115,13 +115,13 @@ export function AboutSection() {
           delay={0.5}
         />
         <AnimatedImage 
-          src="/images/por-do-sol.jpg"
+          src="/images/projeto.webp"
           alt="por-do-sol"
           className="aspect-square w-3/4 rotate-45 justify-self-center object-cover lg:w-40"
           delay={0.5}
         />
         <AnimatedImage 
-          src="/images/por-do-sol.jpg"
+          src="/images/cidade.jpeg"
           alt="por-do-sol"
           className="aspect-square w-3/4 justify-self-center object-cover lg:w-40"
           delay={0.5}
